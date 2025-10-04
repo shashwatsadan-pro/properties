@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashwat Sadan Properties - Build Your Everlasting Legacy</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font (for body) and Playfair Display (for tagline) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Subtle, textured background for a premium, non-flat look */
+            background-color: #f1f5f9; /* Tailwind slate-100 as base */
+            background-image: 
+                radial-gradient(#94a3b8 0.5px, transparent 0.5px),
+                radial-gradient(#94a3b8 0.5px, #f1f5f9 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        /* Style for the script-like tagline */
+        .tagline-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .shadow-legacy {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Custom Shadow for the Logo to enhance luxury */
+        .logo-shadow {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+        /* Ensure cursor pointer for clickable service cards */
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        /* Custom class for the attractive enquiry button */
+        .enquiry-button {
+            background-image: linear-gradient(to right, #f59e0b, #facc15);
+            transition: all 0.2s ease-in-out;
+        }
+        .enquiry-button:hover {
+            box-shadow: 0 4px 15px rgba(253, 224, 71, 0.7);
+            transform: scale(1.05);
+        }
+        /* Custom style for the WhatsApp button */
+        .whatsapp-button {
+            background-color: #25D366; /* WhatsApp green */
+            transition: all 0.2s ease-in-out;
+        }
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.7);
+        }
+        /* Style for the temporary language message container */
+        .language-message {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .language-message.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <script>
+        // --- TRANSLATION DATA & LOGIC ---
+
+        // Store all default English text (mapped to the ID of the element)
+        const defaultTexts = {
+            'main-title': "SHASHWAT SADAN",
+            'main-tagline': "Builds Your Everlasting Legacy",
+            'properties-subtext': "PROPERTIES",
+            'button-site-visit': "🏡 Book Site Visit",
+            'button-enquiry': "💡 General Enquiry",
+            'h2-welcome': "Welcome to Shashwat Sadan Properties.",
+            'p-intro-1-strong': "Shashwat Sadan Properties",
+            'p-intro-1-text': ", our sole goal is to ensure that your property transaction is completed as quickly, efficiently, and at the best price.",
+            'p-intro-2': "Whether you're looking to sell, buy, rent, or acquire a property, we can help you with all these tasks in the shortest possible time. We also offer specialized services such as builder agreements, disputed property resolution, investment consultations, and expert legal advice, ensuring comprehensive support for your real estate journey.",
+            'button-assist': "Get Expert Assistance Now",
+            'h2-services': "Our Everlasting Services",
+            'service-buy-sell-rent-title': "All India Buy, Sell, & Rent",
+            'service-buy-sell-rent-text': "We provide seamless property brokerage services across the entire nation. Our vast network and deep market knowledge ensure quick and efficient transactions. (Click for details)",
+            'service-builder-agreement-title': "Builder Agreement Services",
+            'service-builder-agreement-text': "We meticulously review, negotiate, and finalize all Builder-Buyer Agreements, ensuring your interests are protected against unfavorable clauses. (Click for details)",
+            'service-dispute-resolution-title': "Disputed Property Resolution",
+            'service-dispute-resolution-text': "Navigate complex property disputes with confidence. Our team of legal experts specializes in title clearance, boundary disputes, and succession issues. (Click for details)",
+            'service-expert-consultation-title': "Expert Solutions & Consultation",
+            'service-expert-consultation-text': "We offer premium investment consultation and market analysis. We provide bespoke strategies, detailed legal advice, and expert market insights to maximize your returns. (Click for details)",
+            'service-premium-advertisement-title': "Premium Advertisement & Marketing",
+            'service-premium-advertisement-text': "We offer top-tier marketing services, including professional photography, high-visibility listings, and targeted digital campaigns to attract qualified buyers quickly. (Click for details)",
+            'h3-connect': "Connect Instantly",
+            'p-connect': "Message us on WhatsApp or give us a call.",
+            'button-whatsapp': "💬 WhatsApp Us",
+            'button-call': "📞 Call Us: 9628252855",
+            'h2-office': "Our Office Location",
+            'p-address-1': "Shashwat Sadan Properties",
+            'p-address-2': "61/10 SRM, Mall Road, Kanpur,",
+            'p-address-3': "Pin Code - 208001",
+            'p-contact': "Contact: ",
+            'p-contact-number': "9628252855",
+            'button-map': "📍 View on Google Maps",
+            'p-footer-rights': "© 2024 Shashwat Sadan Properties. All Rights Reserved.",
+            'p-footer-tagline': "Building trust, one lasting transaction at a time.",
+        };
+
+        // Hardcoded Translations for Hindi
+        const translations = {
+            Hindi: {
+                'main-title': "शाश्वत सदन", 
+                'main-tagline': "आपकी चिरस्थायी विरासत का निर्माण करता है", 
+                'properties-subtext': "संपत्ति", 
+                'button-site-visit': "🏡 साइट विज़िट बुक करें",
+                'button-enquiry': "💡 सामान्य पूछताछ",
+                'h2-welcome': "शाश्वत सदन प्रॉपर्टीज में आपका स्वागत है।",
+                'p-intro-1-strong': "शाश्वत सदन प्रॉपर्टीज",
+                'p-intro-1-text': " में, हमारा एकमात्र लक्ष्य यह सुनिश्चित करना है कि आपकी संपत्ति का लेनदेन जल्द से जल्द, कुशलतापूर्वक और सर्वोत्तम मूल्य पर पूरा हो।",
+                'p-intro-2': "चाहे आप बेचना, खरीदना, किराए पर देना, या कोई संपत्ति हासिल करना चाहते हों, हम इन सभी कार्यों में कम से कम समय में आपकी मदद कर सकते हैं। हम बिल्डर समझौतों, विवादित संपत्ति समाधान, निवेश परामर्श, और विशेषज्ञ कानूनी सलाह जैसी विशेष सेवाएं भी प्रदान करते हैं, जो आपकी रियल एस्टेट यात्रा के लिए व्यापक समर्थन सुनिश्चित करती हैं।",
+                'button-assist': "अभी विशेषज्ञ सहायता प्राप्त करें",
+                'h2-services': "हमारी चिरस्थायी सेवाएं",
+                'service-buy-sell-rent-title': "अखिल भारतीय खरीद, बिक्री और किराया",
+                'service-buy-sell-rent-text': "हम पूरे देश में निर्बाध संपत्ति ब्रोकरेज सेवाएं प्रदान करते हैं। हमारा विशाल नेटवर्क और गहरा बाजार ज्ञान त्वरित और कुशल लेनदेन सुनिश्चित करता है। (विवरण के लिए क्लिक करें)",
+                'service-builder-agreement-title': "बिल्डर समझौता सेवाएं",
+                'service-builder-agreement-text': "हम सभी बिल्डर-खरीदार समझौतों की सावधानीपूर्वक समीक्षा, बातचीत और अंतिम रूप देते हैं, यह सुनिश्चित करते हुए कि आपके हितों को प्रतिकूल खंडों से बचाया जाए। (विवरण के लिए क्लिक करें)",
+                'service-dispute-resolution-title': "विवादित संपत्ति समाधान",
+                'service-dispute-resolution-text': "जटिल संपत्ति विवादों को आत्मविश्वास से नेविगेट करें। हमारी कानूनी विशेषज्ञों की टीम टाइटल क्लीयरेंस, सीमा विवादों और उत्तराधिकार के मुद्दों में माहिर है। (विवरण के लिए क्लिक करें)",
+                'service-expert-consultation-title': "विशेषज्ञ समाधान और परामर्श",
+                'service-expert-consultation-text': "हम प्रीमियम निवेश परामर्श और बाजार विश्लेषण प्रदान करते हैं। हम आपके रिटर्न को अधिकतम करने के लिए विशेष रणनीतियों, विस्तृत कानूनी सलाह और विशेषज्ञ बाजार अंतर्दृष्टि प्रदान करते हैं। (विवरण के लिए क्लिक करें)",
+                'service-premium-advertisement-title': "प्रीमियम विज्ञापन और विपणन",
+                'service-premium-advertisement-text': "हम पेशेवर फोटोग्राफी, उच्च-दृश्यता लिस्टिंग और योग्य खरीदारों को जल्दी आकर्षित करने के लिए लक्षित डिजिटल अभियानों सहित शीर्ष-स्तरीय विपणन सेवाएं प्रदान करते हैं। (विवरण के लिए क्लिक करें)",
+                'h3-connect': "तुरंत जुड़ें",
+                'p-connect': "हमें WhatsApp पर मैसेज करें या हमें कॉल करें।",
+                'button-whatsapp': "💬 हमें WhatsApp करें",
+                'button-call': "📞 हमें कॉल करें: 9628252855",
+                'h2-office': "हमारा कार्यालय स्थान",
+                'p-address-1': "शाश्वत सदन प्रॉपर्टीज",
+                'p-address-2': "61/10 एसआरएम, मॉल रोड, कानपुर,",
+                'p-address-3': "पिन कोड - 208001",
+                'p-contact': "संपर्क: ",
+                'p-contact-number': "9628252855",
+                'button-map': "📍 गूगल मैप्स पर देखें",
+                'p-footer-rights': "© 2024 शाश्वत सदन प्रॉपर्टीज। सर्वाधिकार सुरक्षित।",
+                'p-footer-tagline': "विश्वास का निर्माण, एक स्थायी लेन-देन एक समय में।",
+            },
+        };
+        
+        // Function to display a temporary message
+        function showLanguageMessage(message) {
+            let msgElement = document.getElementById('language-alert');
+            if (!msgElement) {
+                msgElement = document.createElement('div');
+                msgElement.id = 'language-alert';
+                msgElement.className = 'language-message bg-green-100 text-green-800 border border-green-400';
+                document.body.appendChild(msgElement);
+            }
+            
+            msgElement.textContent = message;
+            msgElement.classList.add('visible');
+            
+            setTimeout(() => {
+                msgElement.classList.remove('visible');
+            }, 3000);
+        }
+
+        // Function to change language demonstration (UPDATED)
+        function changeLanguage(selectElement) {
+            const selectedLangCode = selectElement.value;
+
+            const textMap = selectedLangCode === "Select Language" || selectedLangCode === "English"
+                ? defaultTexts
+                : translations[selectedLangCode];
+
+            if (!textMap) return;
+
+            // Iterate over all keys in the defaultTexts map and update the corresponding element by ID
+            for (const id in defaultTexts) {
+                const element = document.getElementById(id);
+                if (element) {
+                    const newText = textMap[id] || defaultTexts[id];
+                    
+                    if (id === 'p-intro-1-strong') {
+                        // Special handling for p-intro-1 which contains <strong> tag
+                        element.innerHTML = newText;
+                    } else if (id === 'p-contact-number') {
+                        // Special handling for p-contact-number which is inside an anchor tag
+                        element.textContent = newText;
+                    } else {
+                        element.textContent = newText;
+                    }
+                }
+            }
+
+            // Update the greeting message
+            let message = selectedLangCode === "English" ? "Switched to English!" : `Text content updated to ${selectedLangCode}!`;
+            showLanguageMessage(message);
+
+            // Optional: Reset selector after a short delay for cleaner UI
+            setTimeout(() => {
+                selectElement.value = "Select Language";
+            }, 100);
+        }
+
+
+        // Global list of all detail view IDs (unchanged)
+        const detailViews = [
+            'detail-buy-sell-rent-view', 
+            'detail-builder-agreement-view',
+            'detail-dispute-resolution-view',
+            'detail-expert-consultation-view',
+            'detail-premium-advertisement-view',
+            'lead-generation-view',
+            'site-visit-view',
+        ];
+
+        // Function to hide all non-home views (unchanged)
+        function hideAllDetails() {
+            detailViews.forEach(id => {
+                const view = document.getElementById(id);
+                if (view) view.style.display = 'none';
+            });
+        }
+
+        // Function to show the main home view (UPDATED to reset language)
+        function showHome() {
+            hideAllDetails();
+            document.getElementById('home-view').style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top on page switch
+            
+            // Ensure form results are hidden when returning home or navigating back
+            ['enquiry', 'site-visit'].forEach(prefix => {
+                const form = document.getElementById(`${prefix}-form`);
+                const resultsDiv = document.getElementById(`${prefix}-results`);
+                if (form) form.style.display = 'block';
+                if (resultsDiv) resultsDiv.style.display = 'none';
+            });
+            
+            // Reset language display to English default
+            // By calling changeLanguage with the English option, we ensure all elements revert to the default
+            changeLanguage({value: "English"}); 
+        }
+
+        // Function to show a specific service detail view (unchanged)
+        function showServiceDetail(serviceId) {
+            document.getElementById('home-view').style.display = 'none';
+            hideAllDetails();
+            document.getElementById(`detail-${serviceId}-view`).style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top on page switch
+        }
+        
+        // Function to show the lead generation form (unchanged)
+        function showLeadForm() {
+            document.getElementById('home-view').style.display = 'none';
+            hideAllDetails();
+            document.getElementById('lead-generation-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to show the Site Visit form (unchanged)
+        function showSiteVisitForm() {
+            document.getElementById('home-view').style.display = 'none';
+            hideAllDetails();
+            document.getElementById('site-visit-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Form submission functions (unchanged for brevity)
+        function submitLeadForm(event) {
+            event.preventDefault(); 
+            const form = document.getElementById('enquiry-form');
+            const name = form.elements['lead-name'].value;
+            const contact = form.elements['lead-contact'].value;
+            const location = form.elements['lead-location'].value; 
+            const service = form.elements['lead-service'].value;
+            const imageFile = form.elements['lead-image'].files[0];
+            const otherService = form.elements['lead-other-service'].value;
+            const resultsDiv = document.getElementById('enquiry-results');
+            
+            if (!name || !contact || service === "Select Service" || !location) {
+                resultsDiv.innerHTML = `<div class="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">Please fill in your Name, Contact Number, Location, and Service Enquired For.</div>`;
+                form.style.display = 'block'; 
+                resultsDiv.style.display = 'block';
+                return;
+            }
+
+            let summary = `Thank you, ${name}! Your enquiry has been recorded.`;
+            summary += `<p class="mt-4 font-bold text-blue-900">Details Submitted:</p>`;
+            summary += `<ul class="list-disc ml-5 space-y-1">`;
+            summary += `<li>Name: ${name}</li>`;
+            summary += `<li>Contact: ${contact}</li>`;
+            summary += `<li>Location: ${location}</li>`; 
+            summary += `<li>Service: ${service === 'Other' ? 'Other: ' + otherService : service}</li>`;
+            summary += `<li>Image File Attached: ${imageFile ? imageFile.name : 'No file'}</li>`;
+            summary += `</ul>`;
+            summary += `<p class="mt-4 text-lg text-red-700 font-semibold"><strong>IMPORTANT</strong>: Since this is an instant web form, please ensure to follow up by <strong>WhatsApp or Email</strong> the details below to <strong>shashwat.enrollment@gmail.com</strong> and attach your image file (if applicable) for immediate processing.</p>`;
+
+            resultsDiv.innerHTML = `<div class="p-6 bg-green-100 border border-green-400 text-green-700 rounded-lg">${summary}</div>
+            <button onclick="showHome()" class="mt-6 px-6 py-3 bg-blue-900 text-white font-bold rounded-full hover:bg-blue-800 transition duration-300">
+                Go Back to Main Page
+            </button>`;
+
+            form.style.display = 'none';
+            resultsDiv.style.display = 'block';
+        }
+        
+        function submitSiteVisitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById('site-visit-form');
+            const name = form.elements['visit-name'].value;
+            const contact = form.elements['visit-contact'].value;
+            const location = form.elements['visit-location'].value;
+            const date = form.elements['visit-date'].value;
+            const time = form.elements['visit-time'].value;
+            const message = form.elements['visit-message'].value;
+            const resultsDiv = document.getElementById('site-visit-results');
+
+            if (!name || !contact || !location || !date || time === "Select Time Slot") {
+                resultsDiv.innerHTML = `<div class="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">Please fill in all required fields (Name, Contact, Property Location, Date, and Time).</div>`;
+                form.style.display = 'block';
+                resultsDiv.style.display = 'block';
+                return;
+            }
+
+            let summary = `Thank you, ${name}! Your Site Visit request has been received.`;
+            summary += `<p class="mt-4 font-bold text-blue-900">Request Details:</p>`;
+            summary += `<ul class="list-disc ml-5 space-y-1">`;
+            summary += `<li>Property Location: ${location}</li>`;
+            summary += `<li>Preferred Date: ${date}</li>`;
+            summary += `<li>Preferred Time: ${time}</li>`;
+            summary += `<li>Contact: ${contact}</li>`;
+            summary += `<li>Message: ${message || 'N/A'}</li>`;
+            summary += `</ul>`;
+            summary += `<p class="mt-4 text-lg text-red-700 font-semibold"><strong>IMPORTANT</strong>: We will contact you at <strong>${contact}</strong> within one business hour to confirm the visit time and property access details.</p>`;
+
+            resultsDiv.innerHTML = `<div class="p-6 bg-green-100 border border-green-400 text-green-700 rounded-lg">${summary}</div>
+            <button onclick="showHome()" class="mt-6 px-6 py-3 bg-blue-900 text-white font-bold rounded-full hover:bg-blue-800 transition duration-300">
+                Go Back to Main Page
+            </button>`;
+
+            form.style.display = 'none';
+            resultsDiv.style.display = 'block';
+        }
+
+        // Function to toggle 'Other' input visibility in General Enquiry form (unchanged)
+        function toggleOtherInput() {
+            const serviceSelect = document.getElementById('lead-service');
+            const otherInputDiv = document.getElementById('other-service-input-div');
+            if (serviceSelect.value === 'Other') {
+                otherInputDiv.style.display = 'block';
+                otherInputDiv.querySelector('input').setAttribute('required', 'required');
+            } else {
+                otherInputDiv.style.display = 'none';
+                otherInputDiv.querySelector('input').removeAttribute('required');
+            }
+        }
+
+
+        // Initialize: Ensure only the home view is visible on load
+        window.onload = showHome;
+    </script>
+    
+    <!-- HOME VIEW CONTAINER - Contains all original content -->
+    <div id="home-view">
+        
+        <!-- Header & Hero Section -->
+        <header class="bg-blue-900 text-white shadow-lg">
+            
+            <!-- MANTRA BAR AT THE TOP -->
+            <div class="w-full bg-blue-800 p-2 sm:p-3 shadow-2xl border-b border-amber-400 text-center relative">
+                
+                <!-- Language Selector (Top Right) - Only English and Hindi -->
+                <div class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10">
+                    <select id="language-selector" onchange="changeLanguage(this)" 
+                            class="p-1 pr-8 text-sm rounded-lg bg-blue-900 border border-amber-300 text-amber-300 focus:ring-amber-500 focus:border-amber-500 appearance-none" 
+                            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FCD34D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1rem;">
+                        <option value="Select Language" selected disabled id="language-display-message">🌐 Select Language</option>
+                        <option value="English">English</option>
+                        <option value="Hindi">हिन्दी (Hindi)</option>
+                    </select>
+                </div>
+
+                <!-- Wrapper for the pill shape, centered via the parent text-center -->
+                <span class="inline-block px-4 py-1 rounded-full border-2 border-red-300 bg-red-900/30">
+                    <p class="text-center text-lg sm:text-xl font-extrabold tracking-wider text-red-300">
+                        ॐ गणेशाय नमः &nbsp; • &nbsp; ॐ नमः शिवाय &nbsp; • &nbsp; ॐ हं हनुमते नमः 
+                    </p>
+                </span>
+            </div>
+            
+            <div class="container mx-auto px-4 py-12 md:py-20 text-center rounded-b-xl border-t-8 border-b-8 border-amber-300 max-w-5xl">
+                
+                <!-- NEW Logo SVG: Stylized 'SS' inside an abstract building shape -->
+                <div class="flex justify-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 100 100" class="fill-current logo-shadow">
+                        
+                        <!-- Background/Frame: Dark Blue -->
+                        <rect x="10" y="10" width="80" height="80" rx="15" fill="#1e3a8a"/>
+
+                        <!-- Abstract Roof Peak (Amber) -->
+                        <path d="M 50 15 L 80 40 L 20 40 Z" fill="#fcd34d"/>
+                        
+                        <!-- Abstract Columns/Base (Amber) -->
+                        <rect x="20" y="40" width="60" height="45" fill="#fcd34d" rx="5"/>
+
+                        <!-- Stylized 'S' Cutout/Negative Space (using the dark blue color for the path) -->
+                        <path d="M 35 48 C 30 48, 30 55, 45 55 L 60 55 C 75 55, 75 70, 60 70 L 40 70"
+                              fill="none" stroke="#1e3a8a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Apply the amber glow shadow filter -->
+                        <style>
+                            .logo-shadow {
+                                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+                            }
+                        </style>
+                    </svg>
+                </div>
+                
+                <!-- Company Name - ADDED ID -->
+                <h1 id="main-title" class="text-4xl sm:text-6xl font-extrabold tracking-tight text-amber-300 mb-1">
+                    SHASHWAT SADAN
+                </h1>
+                <!-- Properties Sub-text - ADDED ID -->
+                <p id="properties-subtext" class="text-lg sm:text-xl font-medium text-amber-300 tracking-widest mb-4">
+                    PROPERTIES
+                </p>
+                
+                <!-- Tagline with Script Font - ADDED ID -->
+                <p id="main-tagline" class="text-2xl sm:text-3xl italic font-normal tagline-font text-amber-300 mt-2 mb-8">
+                    Builds Your Everlasting Legacy
+                </p>
+
+                <!-- Site Visit & Enquiry Buttons in Header -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    
+                    <!-- 1. Book Site Visit Button - ADDED ID -->
+                    <button id="button-site-visit" onclick="showSiteVisitForm()" class="inline-block px-8 py-3 bg-white text-blue-900 font-extrabold text-lg rounded-full hover:bg-gray-200 transition duration-300 shadow-xl transform hover:scale-105">
+                        🏡 Book Site Visit
+                    </button>
+                    
+                    <!-- 2. Lead Generation Enquiry Button - ADDED ID -->
+                    <button id="button-enquiry" onclick="showLeadForm()" class="inline-block px-8 py-3 text-blue-900 font-extrabold text-lg rounded-full shadow-xl enquiry-button">
+                        💡 General Enquiry
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Introduction & Mission Section -->
+        <section class="py-12 md:py-16 px-4">
+            <div class="container mx-auto max-w-4xl bg-white p-8 rounded-xl shadow-2xl shadow-blue-200/50 -mt-16 md:-mt-24 relative">
+                <h2 id="h2-welcome" class="text-3xl sm:text-4xl font-bold mb-6 text-blue-900">
+                    Welcome to Shashwat Sadan Properties.
+                </h2>
+                <p class="text-lg mb-4 leading-relaxed border-l-4 border-amber-500 pl-4">
+                    At <strong id="p-intro-1-strong">Shashwat Sadan Properties</strong><span id="p-intro-1-text">, our sole goal is to ensure that your property transaction is completed as quickly, efficiently, and at the best price.</span>
+                </p>
+                <p id="p-intro-2" class="text-lg leading-relaxed text-gray-600">
+                    Whether you're looking to sell, buy, rent, or acquire a property, we can help you with all these tasks in the shortest possible time. We also offer specialized services such as builder agreements, disputed property resolution, investment consultations, and expert legal advice, ensuring comprehensive support for your real estate journey.
+                </p>
+                <!-- CTA to General Enquiry Form - ADDED ID -->
+                <div class="mt-8 text-center">
+                    <button id="button-assist" onclick="showLeadForm()" class="inline-block px-8 py-3 text-blue-900 font-extrabold text-lg rounded-full shadow-xl enquiry-button hover:scale-[1.03] transition duration-300">
+                        Get Expert Assistance Now
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services-section" class="py-16 md:py-24 px-4 bg-gray-100">
+            <div class="container mx-auto">
+                
+                <h2 id="h2-services" class="text-4xl font-extrabold text-center mb-12 text-blue-900">
+                    Our Everlasting Services
+                </h2>
+
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+                    <!-- Service 1: All India Buy, Sell, Rent (Clickable) -->
+                    <div id="service-buy-sell-rent" class="bg-white p-6 rounded-xl shadow-legacy hover:shadow-2xl transition duration-300 border-t-4 border-amber-500 cursor-pointer hover:scale-[1.02] transform" onclick="showServiceDetail('buy-sell-rent')">
+                        <div class="text-4xl text-amber-500 mb-4">🏠</div>
+                        <h3 id="service-buy-sell-rent-title" class="text-2xl font-semibold mb-3 text-blue-800">All India Buy, Sell, & Rent</h3>
+                        <p id="service-buy-sell-rent-text" class="text-gray-600">
+                            We provide seamless property brokerage services across the entire nation. Our vast network and deep market knowledge ensure quick and efficient transactions. <strong>(Click for details)</strong>
+                        </p>
+                    </div>
+
+                    <!-- Service 2: Builder Agreement Services (Clickable) -->
+                    <div id="service-builder-agreement" class="bg-white p-6 rounded-xl shadow-legacy hover:shadow-2xl transition duration-300 border-t-4 border-amber-500 cursor-pointer hover:scale-[1.02] transform" onclick="showServiceDetail('builder-agreement')">
+                        <div class="text-4xl text-amber-500 mb-4">✍️</div>
+                        <h3 id="service-builder-agreement-title" class="text-2xl font-semibold mb-3 text-blue-800">Builder Agreement Services</h3>
+                        <p id="service-builder-agreement-text" class="text-gray-600">
+                            We meticulously review, negotiate, and finalize all Builder-Buyer Agreements, ensuring your interests are protected against unfavorable clauses. <strong>(Click for details)</strong>
+                        </p>
+                    </div>
+
+                    <!-- Service 3: Disputed Property Resolution (Clickable) -->
+                    <div id="service-dispute-resolution" class="bg-white p-6 rounded-xl shadow-legacy hover:shadow-2xl transition duration-300 border-t-4 border-amber-500 cursor-pointer hover:scale-[1.02] transform" onclick="showServiceDetail('dispute-resolution')">
+                        <div class="text-4xl text-amber-500 mb-4">⚖️</div>
+                        <h3 id="service-dispute-resolution-title" class="text-2xl font-semibold mb-3 text-blue-800">Disputed Property Resolution</h3>
+                        <p id="service-dispute-resolution-text" class="text-gray-600">
+                            Navigate complex property disputes with confidence. Our team of legal experts specializes in title clearance, boundary disputes, and succession issues. <strong>(Click for details)</strong>
+                        </p>
+                    </div>
+                    
+                    <!-- Service 4: Expert Solutions & Consultation (Clickable) -->
+                    <div id="service-expert-consultation" class="bg-white p-6 rounded-xl shadow-legacy hover:shadow-2xl transition duration-300 border-t-4 border-amber-500 cursor-pointer hover:scale-[1.02] transform" onclick="showServiceDetail('expert-consultation')">
+                        <div class="text-4xl text-amber-500 mb-4">📈</div>
+                        <h3 id="service-expert-consultation-title" class="text-2xl font-semibold mb-3 text-blue-800">Expert Solutions & Consultation</h3>
+                        <p id="service-expert-consultation-text" class="text-gray-600">
+                            We offer premium investment consultation and market analysis. We provide bespoke strategies, detailed legal advice, and expert market insights to maximize your returns. <strong>(Click for details)</strong>
+                        </p>
+                    </div>
+
+                    <!-- Service 5: Premium Advertisement & Marketing (Clickable) -->
+                    <div id="service-premium-advertisement" class="bg-white p-6 rounded-xl shadow-legacy hover:shadow-2xl transition duration-300 border-t-4 border-amber-500 cursor-pointer hover:scale-[1.02] transform" onclick="showServiceDetail('premium-advertisement')">
+                        <div class="text-4xl text-amber-500 mb-4">📣</div>
+                        <h3 id="service-premium-advertisement-title" class="text-2xl font-semibold mb-3 text-blue-800">Premium Advertisement & Marketing</h3>
+                        <p id="service-premium-advertisement-text" class="text-gray-600">
+                            We offer top-tier marketing services, including professional photography, high-visibility listings, and targeted digital campaigns to attract qualified buyers quickly. <strong>(Click for details)</strong>
+                        </p>
+                    </div>
+
+                    <!-- Footer Call to Action Placeholder (Updated for dual CTA + WhatsApp) -->
+                    <div class="bg-blue-100 p-6 rounded-xl shadow-legacy lg:col-span-1 border-t-4 border-blue-900 flex flex-col justify-center items-center">
+                        <h3 id="h3-connect" class="text-2xl font-bold mb-3 text-blue-900">Connect Instantly</h3>
+                        <p id="p-connect" class="text-center text-gray-700 mb-4">Message us on WhatsApp or give us a call.</p>
+                        
+                        <!-- NEW: WhatsApp Button - ADDED ID -->
+                        <a id="button-whatsapp" href="https://wa.me/919628252855" target="_blank" class="w-full text-center px-6 py-3 text-white font-extrabold text-lg rounded-full shadow-lg transition duration-300 whatsapp-button mb-3">
+                            💬 WhatsApp Us
+                        </a>
+
+                        <!-- Call Us Button (Now Secondary) - ADDED ID -->
+                        <a id="button-call" href="tel:9628252855" class="w-full text-center px-6 py-3 bg-amber-500 text-blue-900 font-bold rounded-full hover:bg-amber-600 transition duration-300 shadow-md">
+                            📞 Call Us: 9628252855
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact and Location Section -->
+        <section class="py-12 px-4 bg-blue-900 text-white">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 id="h2-office" class="text-3xl font-bold mb-4 text-amber-300">Our Office Location</h2>
+                
+                <address class="not-italic text-lg mb-4 leading-relaxed">
+                    <strong id="p-address-1">Shashwat Sadan Properties</strong><br>
+                    <span id="p-address-2">61/10 SRM, Mall Road, Kanpur,</span> <br>
+                    <span id="p-address-3">Pin Code - 208001</span>
+                </address>
+                
+                <p class="text-xl font-bold mb-4 text-amber-300">
+                    <span id="p-contact">Contact: </span>
+                    <a href="tel:9628252855" class="hover:underline">
+                        <span id="p-contact-number">9628252855</span>
+                    </a>
+                </p>
+
+                <a id="button-map" href="https://maps.app.goo.gl/fBdN28eD2w72hHZV7" 
+                   target="_blank" 
+                   class="inline-flex items-center px-6 py-3 bg-amber-500 text-blue-900 font-bold rounded-full hover:bg-amber-400 transition duration-300 shadow-xl">
+                   📍 View on Google Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-8 px-4">
+            <div class="container mx-auto text-center">
+                <p id="p-footer-rights" class="text-lg mb-2">&copy; 2024 Shashwat Sadan Properties. All Rights Reserved.</p>
+                <p id="p-footer-tagline" class="text-sm text-gray-400">Building trust, one lasting transaction at a time.</p>
+            </div>
+        </footer>
+
+    </div> <!-- END OF #home-view -->
+    
+    <!-- NOTE: The content inside the detail views (like forms and explanation pages) is intentionally NOT translated
+         to avoid generating excessive amounts of Hindi text that the user didn't explicitly request. 
+         These remain in English for simplicity and form clarity. -->
+
+    <!-- 
+        1. LEAD GENERATION FORM VIEW (General Enquiry)
+    -->
+    <div id="lead-generation-view" class="min-h-screen pt-12 pb-16 bg-gray-100 px-4" style="display: none;">
+        <div class="container mx-auto max-w-2xl bg-white p-8 md:p-12 rounded-xl shadow-2xl border-t-8 border-amber-500">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-8 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to Home
+            </button>
+
+            <h1 class="text-4xl font-extrabold mb-4 text-blue-900">
+                General Service Enquiry
+            </h1>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed border-l-4 border-blue-500 pl-4">
+                Tell us about your property needs, and a specialized team member will contact you within one business hour.
+            </p>
+            
+            <!-- Form Results Area (Initially hidden) -->
+            <div id="enquiry-results" style="display: none;" class="mb-8">
+                <!-- Content will be injected here upon successful submission -->
+            </div>
+
+            <!-- Lead Generation Form -->
+            <form id="enquiry-form" onsubmit="submitLeadForm(event)">
+                
+                <!-- Name -->
+                <div class="mb-6">
+                    <label for="lead-name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name (Required)</label>
+                    <input type="text" id="lead-name" name="lead-name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150 shadow-sm" placeholder="John Doe">
+                </div>
+
+                <!-- Contact Number -->
+                <div class="mb-6">
+                    <label for="lead-contact" class="block text-sm font-medium text-gray-700 mb-1">Contact Number (Required)</label>
+                    <input type="tel" id="lead-contact" name="lead-contact" required pattern="[0-9]{10,}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150 shadow-sm" placeholder="e.g., 9876543210">
+                </div>
+
+                <!-- Location (Manual Typing Option) -->
+                <div class="mb-6">
+                    <label for="lead-location" class="block text-sm font-medium text-gray-700 mb-1">Location/Area (Required)</label>
+                    <input type="text" id="lead-location" name="lead-location" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150 shadow-sm" placeholder="e.g., Mall Road, Kanpur">
+                </div>
+                
+                <!-- Services Enquired For -->
+                <div class="mb-6">
+                    <label for="lead-service" class="block text-sm font-medium text-gray-700 mb-1">Service Enquired For (Required)</label>
+                    <select id="lead-service" name="lead-service" onchange="toggleOtherInput()" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150 shadow-sm bg-white">
+                        <option value="Select Service">--- Select a Service ---</option>
+                        <option value="Buy, Sell, & Rent">Buy, Sell, & Rent</option>
+                        <option value="Builder Agreement Services">Builder Agreement Services</option>
+                        <option value="Disputed Property Resolution">Disputed Property Resolution</option>
+                        <option value="Expert Solutions & Consultation">Expert Solutions & Consultation</option>
+                        <option value="Premium Advertisement & Marketing">Premium Advertisement & Marketing</option>
+                        <option value="Other">Other (Please Specify Below)</option>
+                    </select>
+                </div>
+
+                <!-- Other Service Text Input (Initially hidden) -->
+                <div id="other-service-input-div" class="mb-6" style="display: none;">
+                    <label for="lead-other-service" class="block text-sm font-medium text-gray-700 mb-1">Please Specify 'Other' Service</label>
+                    <input type="text" id="lead-other-service" name="lead-other-service" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm" placeholder="e.g., Property Valuation or Legal Advice">
+                </div>
+
+                <!-- Image Upload Option -->
+                <div class="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <label for="lead-image" class="block text-sm font-medium text-gray-700 mb-1">Image/Document Upload (Optional)</label>
+                    <p class="text-xs text-gray-500 mb-2">You can attach a photo of your property or a relevant document. For immediate submission, please also email this file to us at <strong>shashwat.enrollment@gmail.com</strong>.</p>
+                    <input type="file" id="lead-image" name="lead-image" accept="image/*, application/pdf" class="w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-3 enquiry-button text-blue-900 font-extrabold text-lg rounded-full shadow-lg hover:shadow-2xl transition duration-300">
+                    Submit My Enquiry
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- 
+        2. SITE VISIT REQUEST FORM VIEW
+    -->
+    <div id="site-visit-view" class="min-h-screen pt-12 pb-16 bg-gray-100 px-4" style="display: none;">
+        <div class="container mx-auto max-w-2xl bg-white p-8 md:p-12 rounded-xl shadow-2xl border-t-8 border-blue-900">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-8 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to Home
+            </button>
+
+            <h1 class="text-4xl font-extrabold mb-4 text-blue-900">
+                Request a Property Site Visit 🏡
+            </h1>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed border-l-4 border-amber-500 pl-4">
+                Fill in your preferred date and the location of the property you are interested in, and we will arrange the visit promptly.
+            </p>
+            
+            <!-- Form Results Area (Initially hidden) -->
+            <div id="site-visit-results" style="display: none;" class="mb-8">
+                <!-- Content will be injected here upon successful submission -->
+            </div>
+
+            <!-- Site Visit Request Form -->
+            <form id="site-visit-form" onsubmit="submitSiteVisitForm(event)">
+                
+                <!-- Name -->
+                <div class="mb-6">
+                    <label for="visit-name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name (Required)</label>
+                    <input type="text" id="visit-name" name="visit-name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm" placeholder="John Doe">
+                </div>
+
+                <!-- Contact Number -->
+                <div class="mb-6">
+                    <label for="visit-contact" class="block text-sm font-medium text-gray-700 mb-1">Contact Number (Required)</label>
+                    <input type="tel" id="visit-contact" name="visit-contact" required pattern="[0-9]{10,}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm" placeholder="e.g., 9876543210">
+                </div>
+
+                <!-- Property Location (Manual Typing) -->
+                <div class="mb-6">
+                    <label for="visit-location" class="block text-sm font-medium text-gray-700 mb-1">Property Location or Address (Required)</label>
+                    <input type="text" id="visit-location" name="visit-location" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm" placeholder="e.g., 123, Model Town, Kanpur">
+                </div>
+
+                <!-- Preferred Date -->
+                <div class="mb-6">
+                    <label for="visit-date" class="block text-sm font-medium text-gray-700 mb-1">Preferred Visit Date (Required)</label>
+                    <input type="date" id="visit-date" name="visit-date" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm bg-white">
+                </div>
+                
+                <!-- Preferred Time Slot -->
+                <div class="mb-6">
+                    <label for="visit-time" class="block text-sm font-medium text-gray-700 mb-1">Preferred Time Slot (Required)</label>
+                    <select id="visit-time" name="visit-time" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm bg-white">
+                        <option value="Select Time Slot">--- Select a Time Slot ---</option>
+                        <option value="9:00 AM - 12:00 PM">Morning (9:00 AM - 12:00 PM)</option>
+                        <option value="12:00 PM - 3:00 PM">Noon (12:00 PM - 3:00 PM)</option>
+                        <option value="3:00 PM - 6:00 PM">Afternoon (3:00 PM - 6:00 PM)</option>
+                        <option value="Evening (6:00 PM onwards)">Evening (6:00 PM onwards)</option>
+                    </select>
+                </div>
+
+                <!-- Additional Message -->
+                <div class="mb-8">
+                    <label for="visit-message" class="block text-sm font-medium text-gray-700 mb-1">Additional Message (Optional)</label>
+                    <textarea id="visit-message" name="visit-message" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm" placeholder="Any specific requirements or questions?"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-3 bg-blue-900 text-white font-extrabold text-lg rounded-full shadow-lg hover:bg-blue-800 transition duration-300">
+                    Submit Site Visit Request
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- Service Detail Views (Unchanged for space, but placed after forms) -->
+    
+    <!-- 
+        DETAIL VIEW 3: ALL INDIA BUY, SELL, RENT 
+    -->
+    <div id="detail-buy-sell-rent-view" class="min-h-screen pt-12 bg-gray-50 px-4" style="display: none;">
+        <div class="container mx-auto max-w-4xl bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-6 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to All Services
+            </button>
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-900 border-b-4 border-amber-500 pb-2">
+                Buy, Sell, & Rent Property: Next Steps
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                If you need to <strong>buy, sell, or rent</strong> property, our primary focus is to make your listing highly attractive to your interested audience, especially in <strong>Kanpur</strong>, which includes professional site visits for verification.
+            </p>
+
+            <div class="p-6 bg-amber-50 border border-amber-300 rounded-lg mb-8">
+                <p class="text-lg font-medium text-amber-700 mb-4">
+                    The best listings make the work done faster, and the best listings require quality <strong>inside and outside photos</strong> of the property.
+                </p>
+                <p class="text-lg text-gray-800">
+                    The sooner we receive your photos and detailed information, the sooner we can begin the marketing and transaction process to secure the best deal for you.
+                </p>
+                <div class="mt-6 text-center">
+                    <button onclick="showLeadForm()" class="inline-block px-6 py-2 enquiry-button text-blue-900 font-bold rounded-full shadow-md hover:opacity-90 transition duration-300">
+                        Submit Details via General Enquiry
+                    </button>
+                </div>
+            </div>
+            
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                How to Submit Your Property Details
+            </h2>
+            
+            <ul class="space-y-4 text-lg text-gray-600">
+                <li class="flex items-start">
+                    <span class="mr-3 text-amber-500 font-bold text-2xl">👉</span>
+                    <span>
+                        Please <strong>WhatsApp us directly to <a href="https://wa.me/919628252855" target="_blank" class="text-green-600 hover:underline font-semibold">9628252855 (Click to WhatsApp)</a></strong> or <strong>email us to <a href="mailto:shashwat.enrollment@gmail.com" class="text-blue-600 hover:underline font-semibold">[shashwat.enrollment@gmail.com]</a></strong> as soon as possible, attaching your property details and high-resolution photos.
+                    </span>
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-3 text-amber-500 font-bold text-2xl">📞</span>
+                    <span>
+                        If you have any questions or require immediate assistance, please feel free to call us directly at 9628252855.
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- 
+        DETAIL VIEW 4: BUILDER AGREEMENT SERVICES 
+    -->
+    <div id="detail-builder-agreement-view" class="min-h-screen pt-12 bg-gray-50 px-4" style="display: none;">
+        <div class="container mx-auto max-w-4xl bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-6 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to All Services
+            </button>
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-900 border-b-4 border-amber-500 pb-2">
+                Builder Agreement Review & Protection
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                Before you sign a Builder-Buyer Agreement, our legal team ensures the document is fair, compliant, and protects your financial and timeline interests. This service is crucial for avoiding future legal hurdles.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                How We Provide This Expert Service
+            </h2>
+            <ul class="space-y-4 text-lg text-gray-600 mb-10 list-disc ml-6">
+                <li><strong>Meticulous Review:</strong> We analyze every clause, penalty, delivery date, and hidden cost in the agreement provided by the builder.</li>
+                <li><strong>Risk Mitigation:</strong> We identify and highlight clauses that unduly favor the builder, advising you on necessary amendments to secure your rights.</li>
+                <li><strong>Legal Compliance:</strong> We verify that the agreement adheres to all current real estate laws and regulations (e.g., RERA where applicable).</li>
+                <li><strong>Negotiation Support:</strong> We help you negotiate better terms with the builder based on legal grounds, ensuring maximum protection for your investment.</li>
+            </ul>
+            
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                Details Required to Start Your Review
+            </h1>
+            <div class="p-6 bg-blue-50 border border-blue-300 rounded-lg mb-8">
+                <p class="text-lg font-medium text-blue-700 mb-4">
+                    To conduct a thorough review and provide accurate advice, please prepare the following documents:
+                </p>
+                <ul class="list-disc ml-6 space-y-2 text-gray-800">
+                    <li>The complete <strong>Draft Builder-Buyer Agreement</strong> (unsigned).</li>
+                    <li><strong>Booking Receipt</strong> and all payment proofs made to date.</li>
+                    <li>The <strong>Payment Schedule</strong> or plan agreed upon.</li>
+                    <li>Any <strong>written correspondence</strong> (emails, letters) with the builder regarding terms.</li>
+                </ul>
+            </div>
+            
+            <h2 class="text-3xl font-bold mb-4 text-red-800">
+                A Note on Property Disputes
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                If you have <strong>already signed</strong> an agreement and a conflict (dispute) has arisen—such as a delay in possession, quality issues, or cancellation issues—this falls under our <strong>Disputed Property Resolution</strong> service. A dispute refers to any legal claim or contest over property ownership, title, or conditions. If you are already in a dispute, please call us directly for an immediate legal consultation instead of submitting documents via email.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- 
+        DETAIL VIEW 5: DISPUTED PROPERTY RESOLUTION 
+    -->
+    <div id="detail-dispute-resolution-view" class="min-h-screen pt-12 bg-gray-50 px-4" style="display: none;">
+        <div class="container mx-auto max-w-4xl bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-6 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to All Services
+            </button>
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-900 border-b-4 border-amber-500 pb-2">
+                Disputed Property Resolution: Legal Certainty
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                A <strong>Dispute</strong> is any legal claim or contest regarding the ownership, title, boundary, or rights associated with a property. Our resolution service aims to clear titles and settle conflicts efficiently, securing your investment.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                How We Resolve Complex Disputes
+            </h2>
+            <ul class="space-y-4 text-lg text-gray-600 mb-10 list-disc ml-6">
+                <li><strong>Case Assessment:</strong> Comprehensive review of all historical records, deeds, and claims to establish the property's legal history.</li>
+                <li><strong>Strategic Litigation:</strong> Developing and executing a tailored legal strategy, representing you in court or through arbitration.</li>
+                <li><strong>Documentation & Title Clearance:</strong> Working directly with revenue departments and legal bodies to finalize clear, undisputed titles.</li>
+                <li><strong>Mediation & Settlement:</strong> Negotiating out-of-court settlements where possible to save time and resources.</li>
+            </ul>
+            
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                Documents Required for Dispute Review
+            </h1>
+            <div class="p-6 bg-blue-50 border border-blue-300 rounded-lg mb-8">
+                <p class="text-lg font-medium text-blue-700 mb-4">
+                    Please provide every document related to the property and the dispute:
+                </p>
+                <ul class="list-disc ml-6 space-y-2 text-gray-800">
+                    <li>All <strong>Sale Deeds, Gift Deeds,</strong> or <strong>Succession Certificates</strong>.</li>
+                    <li>Copies of <strong>Mutation/Revenue Records</strong> (Khata/Khasra).</li>
+                    <li>Any <strong>Court Orders, Notices, or Legal Filings</strong> from the opposing party.</li>
+                    <li><strong>Property Tax Receipts</strong> and <strong>Encumbrance Certificates</strong>.</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- 
+        DETAIL VIEW 6: EXPERT SOLUTIONS & CONSULTATION 
+    -->
+    <div id="detail-expert-consultation-view" class="min-h-screen pt-12 bg-gray-50 px-4" style="display: none;">
+        <div class="container mx-auto max-w-4xl bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-6 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to All Services
+            </button>
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-900 border-b-4 border-amber-500 pb-2">
+                Expert Investment Solutions & Consultation
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                Building a lasting legacy requires strategic, informed decisions. Our expert consultation services provide you with proprietary market intelligence to optimize your real estate portfolio, ensuring high growth and sustained value.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                How Our Expert Advice Works
+            </h2>
+            <ul class="space-y-4 text-lg text-gray-600 mb-10 list-disc ml-6">
+                <li><strong>Market Trend Analysis:</strong> Deep-dive reports on local and national property value shifts, growth corridors, and investment opportunities.</li>
+                <li><strong>Risk Assessment:</strong> Evaluating potential risks associated with land use, zoning laws, and future infrastructure projects.</li>
+                <li><strong>Bespoke Strategy:</strong> Developing a customized plan for acquisition, liquidation, and diversification based on your financial goals.</li>
+                <li><strong>Legal Due Diligence:</strong> Providing necessary legal advice on tax implications and compliance for investment properties.</li>
+            </ul>
+            
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                Information Required for Consultation
+            </h1>
+            <div class="p-6 bg-blue-50 border border-blue-300 rounded-lg mb-8">
+                <p class="text-lg font-medium text-blue-700 mb-4">
+                    To prepare your tailored investment strategy, please provide:
+                </p>
+                <ul class="list-disc ml-6 space-y-2 text-gray-800">
+                    <li>Your explicit <strong>Investment Goals</strong> (e.g., appreciation, rental yield, or diversification).</li>
+                    <li>Your estimated <strong>Capital/Budget</strong> for the investment.</li>
+                    <li>Any properties you <strong>currently hold</strong> (location and type).</li>
+                    <li>Your <strong>Timeline</strong> for investment (short-term, long-term).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        DETAIL VIEW 7: PREMIUM ADVERTISEMENT & MARKETING 
+    -->
+    <div id="detail-premium-advertisement-view" class="min-h-screen pt-12 bg-gray-50 px-4" style="display: none;">
+        <div class="container mx-auto max-w-4xl bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Back Button -->
+            <button onclick="showHome()" class="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold mb-6 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to All Services
+            </button>
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-900 border-b-4 border-amber-500 pb-2">
+                Premium Advertisement & High-Visibility Marketing
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                Selling a property requires maximum exposure to qualified buyers. Our premium marketing strategy uses professional assets and targeted campaigns to ensure your property is seen by the right audience quickly, resulting in the best possible sale price.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                Our Four-Step Marketing Process
+            </h2>
+            <ul class="space-y-4 text-lg text-gray-600 mb-10 list-decimal ml-6">
+                <li><strong>Professional Photography:</strong> Scheduling professional photographers to capture high-quality interior and exterior images.</li>
+                <li><strong>Compelling Copywriting:</strong> Crafting detailed, attractive, and legally compliant descriptions to maximize buyer interest.</li>
+                <li><strong>Multi-Platform Listing:</strong> Listing your property on the most visible real estate portals, targeted social media channels, and our exclusive buyer network.</li>
+                <li><strong>Targeted Digital Ads:</strong> Running focused online ad campaigns that reach serious buyers based on demographic and behavioral data.</li>
+            </ul>
+            
+            <h2 class="text-3xl font-bold mb-4 text-blue-800">
+                Details Required to Start Marketing
+            </h1>
+            <div class="p-6 bg-blue-50 border border-blue-300 rounded-lg mb-8">
+                <p class="text-lg font-medium text-blue-700 mb-4">
+                    To launch your premium marketing campaign, we need:
+                </p>
+                <ul class="list-disc ml-6 space-y-2 text-gray-800">
+                    <li>The <strong>Exact Property Location</strong> and legal address.</li>
+                    <li>Your <strong>Desired Selling Price</strong> and floor price.</li>
+                    <li><strong>Access Schedule</strong> for photography and potential site visits.</li>
+                    <li>Basic information on property features and recent upgrades.</li>
+                </ul>
+                <div class="mt-6 text-center">
+                    <button onclick="showLeadForm()" class="inline-block px-6 py-2 enquiry-button text-blue-900 font-bold rounded-full shadow-md hover:opacity-90 transition duration-300">
+                        Submit Details via General Enquiry
+                    </button>
+                </div>
+            </div>
+            <p class="text-center text-lg text-blue-800 font-semibold mt-8">
+                The faster we have the details, the faster we secure your buyer.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
